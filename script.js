@@ -1,3 +1,11 @@
+var fs = fs.require('fs');
+var http = http.require('http');
+
+function sendFile(filename, response) {
+    fs.readFile(filename, function(err,data) {
+        response.end(data);
+    });
+
 var movies = [
     {
         id: 1,
@@ -6,7 +14,7 @@ var movies = [
         kind: 'fantasy',
         film_director: 'Chris Columbs',
         language: 'angielski',
-        image: './harry.jpg'
+        image: sendFile('./harry.jpg', response)
     },
     {
         id: 2,
@@ -15,26 +23,7 @@ var movies = [
         kind: 'anime',
         film_director: 'Roger Allers',
         language: 'angielski',
-        image: './krollew.jpg'
-        
-    },
-    {
-        id: 3,
-        title: 'Ostra randka',
-        desc: 'niskobudżetowy thriller o nielegalnym handlu ludzkimi organami',
-        kind: 'thriller',
-        film_director: 'Maciej Odoliński',
-        language: 'polski',
-        image: './randka.jpg'
-    },
-    {
-        id: 4,
-        title: 'Ida',
-        desc: 'film o podróży dwóch kobiet, nawiązujący do tematyki zagłady Żydów',
-        kind: 'dramat psychologiczny',
-        film_director: 'Paweł Pawlikowksi',
-        language: 'polski',
-        image: './ida.jpg'
+        image: sendFile('./krollew.jpg', response)        
     }
 ];
 
