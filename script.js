@@ -1,11 +1,3 @@
-var fs = fs.require('fs');
-var http = http.require('http');
-
-function sendFile(filename, response) {
-    fs.readFile(filename, function(err,data) {
-        response.end(data);
-    });
-
 var movies = [
     {
         id: 1,
@@ -14,7 +6,7 @@ var movies = [
         kind: 'fantasy',
         film_director: 'Chris Columbs',
         language: 'angielski',
-        image: sendFile('./harry.jpg', response)
+        image: './harry.jpg'
     },
     {
         id: 2,
@@ -23,7 +15,7 @@ var movies = [
         kind: 'anime',
         film_director: 'Roger Allers',
         language: 'angielski',
-        image: sendFile('./krollew.jpg', response)        
+        image: './krollew.jpg'
     }
 ];
 
@@ -34,11 +26,15 @@ var moviesElements = movies.map(function(movie) {
                                React.createElement('p', {}, movie.kind),
                                React.createElement('p', {}, movie.film_director),
                                React.createElement('p', {}, movie.language),
-                               React.createElement('img', {}, movie.image)
+                               React.createElement('img', {src: movie.image})
                               );
 });
-var element =
-    React.createElement('div', {},
-                        React.createElement('h1', {}, 'Lista filmów'),
-                        React.createElement('ul', {}, moviesElements)
-                       );
+var element = React.createElement('div', {},
+                React.createElement('h1', {}, 'Lista filmów'),
+                React.createElement('ul', {}, moviesElements)
+);
+
+ReactDOM.render(
+  element, 
+  document.getElementById('app')
+);
