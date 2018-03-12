@@ -28,6 +28,7 @@ var moviesElements = movies.map(function(movie) {
                                React.createElement('p', {}, movie.language),
                                React.createElement('img', {src:movie.image})
                               );
+});
 var element =
     React.createElement('div', {},
                         React.createElement('h1', {}, 'Lista filmów'),
